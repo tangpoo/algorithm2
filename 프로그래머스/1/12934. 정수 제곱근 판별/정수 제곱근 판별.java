@@ -1,13 +1,6 @@
 class Solution {
     public long solution(long n) {
-        long answer = -1;
-        
-        long num = Math.round((Math.sqrt(n)));
-        
-        if(num * num == n){
-            answer = (num + 1) * (num + 1);
-        }
-        
-        return answer;
+        double num = Math.sqrt(n);
+        return Math.floor(num) == num ? (long) Math.pow(num + 1, 2) : -1;
     }
 }
