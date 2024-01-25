@@ -45,14 +45,6 @@ class Main{
             while(!q.isEmpty()){
                 cur = q.poll();
 
-                if(board[cur[0]][cur[1]] != 0 && board[cur[0]][cur[1]] < size){
-                    board[cur[0]][cur[1]] = 0;
-                    eat++;
-                    move += cur[2];
-                    ck = true;
-                    break;
-                }
-
                 for(int i = 0; i < 4; i++){
                     int nx = dx[i] + cur[0];
                     int ny = dy[i] + cur[1];
@@ -62,6 +54,13 @@ class Main{
 
                     q.add(new int[]{nx, ny, cur[2] + 1});
                     visit[nx][ny] = true;
+                }
+                                if(board[cur[0]][cur[1]] != 0 && board[cur[0]][cur[1]] < size){
+                    board[cur[0]][cur[1]] = 0;
+                    eat++;
+                    move += cur[2];
+                    ck = true;
+                    break;
                 }
             }
 
