@@ -1,29 +1,26 @@
 import java.io.*;
 import java.util.*;
 
-class Main{
-    public static void main(String[] args) throws IOException{
+class Main {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer subtraction = new StringTokenizer(br.readLine(), "-");
-        
-        int sum = Integer.MAX_VALUE;
-        while(subtraction.hasMoreTokens()) {
-        	
-        	int temp = 0;
-        	
-        	StringTokenizer addition = new StringTokenizer(subtraction.nextToken(), "+");
-        	
-        	while(addition.hasMoreTokens()) {
-        		temp += Integer.parseInt(addition.nextToken());
-        	}
-        	if(sum == Integer.MAX_VALUE) {
-        		sum = temp;
-        	}
-        	else {
-        		sum -= temp;
-        	}
+        String[] sub = br.readLine().split("-");
+
+        int result = sum(sub[0]);
+        for (int i = 1; i < sub.length; i++) {  
+            result -= sum(sub[i]);
         }
-        System.out.println(sum);
-	}
+
+        System.out.println(result);
+    }
+
+    private static int sum(String s) {
+        String[] add = s.split("\\+");
+        int sum = 0;
+        for (String num : add) {
+            sum += Integer.parseInt(num);
+        }
+        return sum;
+    }
 }
 
