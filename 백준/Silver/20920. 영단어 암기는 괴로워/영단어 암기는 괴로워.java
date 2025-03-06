@@ -16,34 +16,36 @@ public class Main{
         int n=Integer.parseInt(st.nextToken());
         int m=Integer.parseInt(st.nextToken());
 
-        Map<String, Integer> wordMap = new HashMap<String, Integer>();
-
-        for(int i=0; i<n; i++){
-            String word=br.readLine();
-            if(word.length()<m) continue;
-
-            Integer count = wordMap.getOrDefault(word, 0);
-            wordMap.put(word, count+1);
+        Map<String, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < n; i++){
+            String word = br.readLine();
+            if(word.length() < m){
+                continue;
+            }
+            
+            Integer count = map.getOrDefault(word, 0);
+            map.put(word, count+1);
         }
-        List<String> words = wordMap.keySet().stream().collect(Collectors.toList());
-
-        words.sort((o1, o2) -> {
-            int c1=wordMap.get(o1);
-            int c2=wordMap.get(o2);
-
-            if(c1==c2){
-                if(o1.length() == o2.length()) {
+        
+        List<String> words = map.keySet().stream().collect(Collectors.toList());
+        words.sort((o1, o2) ->{
+            int c1 = map.get(o1);
+            int c2 = map.get(o2);
+            
+            if(c1 == c2){
+                if(o1.length() == o2.length()){
                     return o1.compareTo(o2);
                 }
-                return o2.length()-o1.length(); 
+                return o2.length() - o1.length();
             }
-            return c2-c1;
+            return c2 - c1;
         });
-
-        StringBuilder sb=new StringBuilder();
-        for(int i=0; i <words.size(); i++){
-            sb.append(words.get(i)).append("\n");
+        
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < words.size(); i++){
+            sb.append(words.get(i)).append('\n');
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 }
